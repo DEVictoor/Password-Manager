@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("URL_DBCONNECT")
+}
+
+model person {
+  id String @id  @default(uuid())
+  name String
+  lastname String 
+  phone String
+  bithday DateTime?
+}
+
+model user {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  password String
+  full_name  String?
+  billing_address String?
+  country String?
+  phone String?
+  posts post[]
+}
+
+model post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  viewCount Int      @default(0)
+  author    user?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+}
+
+model secret {
+  id String @id @default(uuid())
+  title String 
+  type typesecret? @relation(fields: [typeId], references: [id])
+  typeId String?
+}
+
+model typesecret {
+  id String @id @default(uuid())
+  title String 
+  description String
+  secrets secret[]
+}
+
+model platform {
+  id String @id @default(uuid())
+  title String 
+  description String? 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
+
