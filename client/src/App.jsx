@@ -1,7 +1,12 @@
 import './App.css';
+import { LoginPage } from './pages/LoginPage';
 
 const App = () => {
-  return <></>;
+  return (
+    <div className="App">
+      <LoginPage />
+    </div>
+  );
 };
 
 export { App };
