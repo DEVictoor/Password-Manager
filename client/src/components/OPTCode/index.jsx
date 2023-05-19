@@ -10,78 +10,52 @@ const OPTCode = () => {
     inputRefs.current[0].focus();
   }, []);
 
-  // const handleOPTCode = (index, value) => {
-  //   const a = Array(5).fill('');
-  //   setInputValues(a);
-  //   console.log(a, '11');
-  //   const newInputValues = [...inputValues];
-  //   console.log(newInputValues, '12');
-
-  //   newInputValues[index] = value;
-  //   setInputValues(newInputValues);
-  //   console.log(newInputValues, '1');
-
-  //   if (value.length > 0) {
-  //     if (index === inputValues.length - 1) {
-  //       buttonRef.current.focus();
-  //     } else {
-  //       inputRefs.current[index + 1].focus();
-  //     }
-  //   }
-  // };
-
-  const handleKeyPress = (event, index) => {
-    console.log(event);
-    if (event.key === 'Backspace' && index > 0) {
-      if (event.target.value.length === 0) {
-        setInputValues(prevInputValues => {
-          const newInputValues = [...prevInputValues];
-          newInputValues[index - 1] = '';
-          return newInputValues;
-        });
-        inputRefs.current[index - 1].focus();
-      } else if (event.target.value.length !== 0) {
-        setInputValues(prevInputValues => {
-          const newInputValues = [...prevInputValues];
-          newInputValues[index] = '';
-          return newInputValues;
-        });
-      }
-    } else if (event.key.length === 1 && !event.ctrlKey && event.key !== 'v') {
-      const value = event.key;
-      const newInputValues = [...inputValues];
-      newInputValues[index] = value;
-      setInputValues(newInputValues);
-
-      if (value.length > 0) {
-        if (index === inputValues.length - 1) {
-          buttonRef.current.focus();
-        } else {
-          inputRefs.current[index + 1].focus();
-        }
-      }
-    }
-  };
-  const handlePaste = (event, index) => {
-    console.log('paste');
-    const textPaste = event.clipboardData.getData('text/plain');
+  const insertChar = (value, index) => {
     const newInputValues = [...inputValues];
-    for (let i = 0; index < textPaste.length; i++) {
-      newInputValues[index] = textPaste[i];
-      console.log(newInputValues, textPaste[index], inputValues.length, index);
-      index++;
-      setInputValues(newInputValues);
-    }
-    console.log('index', index);
-    if (index === inputValues.length) {
+    newInputValues[index] = value;
+    setInputValues(newInputValues);
+  };
+
+  const setFocus = index => {
+    if (index === inputValues.length - 1) {
       buttonRef.current.focus();
     } else {
-      inputRefs.current[index].focus();
+      inputRefs.current[index + 1].focus();
     }
   };
 
-  const handleSubmit = () => {
-    console.log('OPTCode: ', inputValues.join(''));
+  const handleKeyPress = (e, index) => {
+    if (e.ctrlKey) return;
+    if (e.key === 'Backspace' && index > 0) {
+      if (e.target.value.length !== 0) {
+        insertChar('', index);
+        setFocus(index - 1);
+      } else {
+        insertChar('', index - 1);
+        setFocus(index - 2);
+      }
+    } else if (/^[a-zA-Z0-9\b]$/.test(e.key)) {
+      insertChar(e.key.toUpperCase(), index);
+      setFocus(index);
+    }
+  };
+
+  const handlePaste = (e, index) => {
+    const newInputValues = [...inputValues];
+    let textPaste = e.clipboardData
+      .getData('text/plain')
+      .replace(/[^a-zA-Z0-9]/g, '')
+      .toUpperCase();
+    const minNumber = Math.min(inputValues.length - index, textPaste.length);
+
+    for (let i = 0; i < minNumber; i++) {
+      if (/^[a-zA-Z0-9\b]$/.test(textPaste[i])) {
+        newInputValues[index] = textPaste[i];
+        setInputValues(newInputValues);
+        index++;
+      }
+    }
+    setFocus(index - 1);
   };
 
   return (
@@ -95,22 +69,17 @@ const OPTCode = () => {
               maxLength={1}
               key={index}
               value={value}
-              // onInput={e => handleOPTCode(index, e.target.value)}
               onKeyDown={e => handleKeyPress(e, index)}
               type="text"
               id={`OPTCode${index}`}
               ref={ref => inputRefs.current.push(ref)}
               onPaste={e => handlePaste(e, index)}
-              // readOnly
+              readOnly
             />
           ))}
         </div>
       </div>
-      <button
-        ref={buttonRef}
-        onClick={handleSubmit}
-        className="OPTCode__button"
-      >
+      <button ref={buttonRef} className="OPTCode__button">
         Confirm
       </button>
     </div>
