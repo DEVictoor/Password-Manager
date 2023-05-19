@@ -2,6 +2,7 @@ import express, { Application as ExApplication, Handler } from 'express';
 import { controllers } from './modules//index';
 import { MetadataKeys } from './utils/metadata.keys';
 import { IRouter, Methods } from './utils/handlers.decorator';
+import connectionDB from './database/conection';
 import cors from 'cors';
 
 class Application {
@@ -17,12 +18,17 @@ class Application {
     this._instance.use('/public', express.static('assets'));
     this._instance.use(cors({ origin: '*' }))
     this.registerRouters();
+
+    // Conection DB, tengo que mejorarlo
+    connectionDB()
+      .then(c => c.initialize()
+        .then(() => console.log('DB connected'))
+        .catch(err => console.log('F DB')));
   }
 
   private registerRouters() {
 
     this._instance.get('/', (req, res) => {
-
       res.json({ message: 'Hello World!' });
     });
 
