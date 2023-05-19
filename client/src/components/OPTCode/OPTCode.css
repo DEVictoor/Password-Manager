@@ -1,0 +1,53 @@
+.OPTCode__title {
+  margin-bottom: 20px;
+}
+
+.OPTCode__input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.OPTCode__input label {
+  margin-bottom: 10px;
+}
+
+.OPTCode__input--inputs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: center;
+  align-content: center;
+}
+
+.OPTCode__input input {
+  display: flex;
+  max-height: 50px;
+  max-width: 50px;
+  display: block;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.OPTCode__button {
+  width: 100%;
+  padding: 16px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  background-color: #121212;
+  color: #fff;
+}
+
+.OPTCode__button:hover {
+  background-color: #2f2f2f;
+}
+
+.OPTCode__button:focus {
+  background-color: #2f2f2f;
+}
