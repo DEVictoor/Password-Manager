@@ -5,6 +5,8 @@ import { FullNamePage } from './pages/FullNamePage';
 import { LoginPage } from './pages/LoginPage';
 import { EmailPage } from './pages/EmailPage';
 import { OPTCodePage } from './pages/OPTCodePage';
+import { PurchaseMessagePage } from './pages/PurchaseMessagePage';
+import { ChooseProfilePage } from './pages/ChooseProfilePage';
 
 const App = () => {
   return (
@@ -14,7 +16,9 @@ const App = () => {
       {/* {/* <FullNamePage /> */}
       {/* <PasswordPage /> */}
       {/* <ConfirmPasswordPage /> */}
-      <OPTCodePage />
+      {/* <OPTCodePage /> */}
+      {/* <PurchaseMessagePage /> */}
+      <ChooseProfilePage />
     </div>
   );
 };
