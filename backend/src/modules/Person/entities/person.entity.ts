@@ -1,30 +1,37 @@
-import { Column, CreateDateColumn, Entity, IsNull, OneToOne, PrimaryColumn, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from "typeorm";
 import { User } from "../../Users/entities/user.entity";
 
 @Entity()
-export class Person {
+export class Person extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column()
-  firstname: string;
+  @Column({ nullable: true })
+  firstname?: string;
 
-  @Column()
-  lastname: string;
+  @Column({ nullable: true })
+  lastname?: string;
 
-  @Column()
-  @Unique()
+  @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   address?: string;
 
   @OneToOne(() => User, (user) => user.person)
-  user: User;
+  user?: User;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at?: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updated_at?: Date;
 }

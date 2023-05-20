@@ -1,11 +1,10 @@
 import { DataSource } from "typeorm";
 import dotenv from 'dotenv';
-import { Person } from "../modules/Person/entities/person.entity";
 
 dotenv.config();
 
-const AppDataSource = async () => {
-  return new DataSource({
+export const ConectionPgsql =
+  new DataSource({
     type: "postgres",
     host: "localhost",
     port: Number(process.env.PSQL_PORT),
@@ -13,11 +12,13 @@ const AppDataSource = async () => {
     password: process.env.PSQL_PASSWORD,
     database: "password_manager",
     synchronize: true,
-    // logging: true,
+    // logging: ["migration", "query", "info"],
+    logging: ["query"],
     entities: ["src/modules/**/entities/*.entity.ts"],
     subscribers: [],
-    migrations: [],
+    migrations: [/*...*/],
+    migrationsTableName: "migrations",
+    migrationsTransactionMode: "all",
+    migrationsRun: true,
   })
-}
 
-export default AppDataSource;

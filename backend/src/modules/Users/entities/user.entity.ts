@@ -1,8 +1,8 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Person } from "../../Person/entities/person.entity";
 
 @Entity()
-export class User {
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
@@ -12,16 +12,16 @@ export class User {
   @Column()
   password: string;
 
-  @Column()
-  isSubscribed: boolean;
+  @Column({ default: 0, nullable: true })
+  isSubscribed?: boolean;
 
   @OneToOne(() => Person, (p) => p.user)
   @JoinColumn()
   person: Person;
 
   @CreateDateColumn()
-  created_at: Date;
+  created_at?: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  updated_at?: Date;
 }
