@@ -20,6 +20,10 @@ export class UserService {
     return (await this._repo.findOneBy({ id })) ?? {};
   }
 
+  async findOneByEmail(email: string): Promise<User | null> {
+    return await this._repo.findOneBy({ person: { email } });
+  }
+
   async create(body: UserDTO): Promise<User> {
     return await this._repo.save(body);
   }
