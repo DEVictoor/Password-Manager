@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { CustomRequest, JwtAuth } from "../../middlewares/jwt.middleware";
 import logger from "../../middlewares/logger.middleware";
 import Controller from "../../utils/controller.decorator";
 import { Get, Post } from "../../utils/handlers.decorator";
@@ -13,10 +14,10 @@ export class PersonController {
     this._service = new PersonService();
   }
 
-  @Middleware([logger])
+  @Middleware([JwtAuth])
   @Get("")
-  async getAll(req: Request, res: Response) {
-    console.log(req.body.user);
+  async getAll(req: CustomRequest, res: Response) {
+    console.log(req.user_id);
     const personas = await this._service.getAll();
     return res.status(200).json(personas);
   }
