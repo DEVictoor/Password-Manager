@@ -1,9 +1,9 @@
-import { MetadataKeys } from "./metadata.keys";
+import { Metadata } from "../enums/Controller.enum";
 
 const Controller = (basePath: string): ClassDecorator => {
   return (target) => {
-      Reflect.defineMetadata(MetadataKeys.BASE_PATH, basePath, target);
+    Reflect.defineMetadata(Metadata.BASE_PATH, basePath, target);
   };
-}
+};
 
 export default Controller;
