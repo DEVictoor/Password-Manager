@@ -12,6 +12,8 @@ import { NewVaultPage } from './pages/NewVaultPage';
 import { AccountPage } from './pages/AccountPage';
 import { AccountPasswordPage } from './pages/AccountPasswordPage';
 import { ApplicationPage } from './pages/ApplicationPage';
+import { AppRouter } from './routers/AppRouter';
+import { BrowserRouter } from 'react-router-dom';
 
 const App = () => {
   return (
@@ -28,7 +30,10 @@ const App = () => {
       {/* <NewVaultPage /> */}
       {/* <AccountPage />*/}
       {/* <AccountPasswordPage /> */}
-      <ApplicationPage />
+      {/* <ApplicationPage /> */}
+      <BrowserRouter>
+        <AppRouter />
+      </BrowserRouter>
     </div>
   );
 };
