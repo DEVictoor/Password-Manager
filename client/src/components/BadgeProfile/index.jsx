@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import './BadgeProfile.css';
 
 const BadgeProfile = ({ profile, deleteProfile }) => {

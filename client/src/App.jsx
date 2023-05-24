@@ -7,6 +7,11 @@ import { EmailPage } from './pages/EmailPage';
 import { OPTCodePage } from './pages/OPTCodePage';
 import { PurchaseMessagePage } from './pages/PurchaseMessagePage';
 import { ChooseProfilePage } from './pages/ChooseProfilePage';
+import { MainMenuPage } from './pages/MainMenuPage';
+import { NewVaultPage } from './pages/NewVaultPage';
+import { AccountPage } from './pages/AccountPage';
+import { AccountPasswordPage } from './pages/AccountPasswordPage';
+import { ApplicationPage } from './pages/ApplicationPage';
 
 const App = () => {
   return (
@@ -18,7 +23,12 @@ const App = () => {
       {/* <ConfirmPasswordPage /> */}
       {/* <OPTCodePage /> */}
       {/* <PurchaseMessagePage /> */}
-      <ChooseProfilePage />
+      {/* <ChooseProfilePage /> */}
+      {/* <MainMenuPage /> */}
+      {/* <NewVaultPage /> */}
+      {/* <AccountPage />*/}
+      {/* <AccountPasswordPage /> */}
+      <ApplicationPage />
     </div>
   );
 };

@@ -1,0 +1,83 @@
+.Account__title {
+  margin-bottom: 20px;
+  display: flex;
+}
+.Account__title button {
+  border: 0;
+  background-color: #fff;
+  padding: 0;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.Account__input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.Account__input label {
+  margin-bottom: 5px;
+}
+
+.Account__input input {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.Account__link a {
+  color: #666;
+  text-decoration: none;
+}
+
+.Account__link a:hover {
+  text-decoration: underline;
+}
+
+.Account__button {
+  display: flex;
+}
+
+.Account__button--save {
+  width: 100%;
+  padding: 16px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 0;
+  background-color: #121212;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.Account__button--save:hover {
+  background-color: #2f2f2f;
+}
+
+.Account__button--cancel,
+.Account__button--password {
+  background-color: #ddd;
+  color: #2f2f2f;
+  width: 100%;
+  padding: 16px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Account__button--cancel:hover,
+.Account__button--password:hover {
+  background-color: #c8c8c8;
+  color: #2f2f2f;
+}

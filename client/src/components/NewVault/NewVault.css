@@ -1,0 +1,86 @@
+.NewVault__title {
+  margin-bottom: 20px;
+  display: flex;
+}
+.NewVault__title button {
+  border: 0;
+  background-color: #fff;
+  padding: 0;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.NewVault__input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.NewVault__input label {
+  margin-bottom: 5px;
+}
+
+.NewVault__input input,
+textarea {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.NewVault__link a {
+  color: #666;
+  text-decoration: none;
+}
+
+.NewVault__link a:hover {
+  text-decoration: underline;
+}
+
+.NewVault button {
+  cursor: pointer;
+}
+
+.NewVault__button {
+  display: flex;
+}
+
+.NewVault__button--create {
+  width: 100%;
+  padding: 16px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 0;
+  background-color: #121212;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.NewVault__button--create:hover {
+  background-color: #2f2f2f;
+}
+
+.NewVault__button--cancel {
+  background-color: #ddd;
+  color: #2f2f2f;
+  width: 100%;
+  padding: 16px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.NewVault__button--cancel:hover {
+  background-color: #c8c8c8;
+  color: #2f2f2f;
+}

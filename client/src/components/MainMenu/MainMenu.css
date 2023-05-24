@@ -1,0 +1,37 @@
+.MainMenu__header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  width: 300px;
+}
+
+.MainMenu__header--top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.MainMenu__header--bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.logo,
+.name,
+.icon {
+  display: flex;
+  align-items: center;
+}
+
+.logo img,
+.icon img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.name h1 {
+  margin: 0;
+}
