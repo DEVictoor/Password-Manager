@@ -1,14 +1,19 @@
 {
   "compilerOptions": {
-    "types": ["reflect-metadata"],
+    "types": [
+      "reflect-metadata"
+    ],
     "target": "ES2018",
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "./dist",
     "strict": true,
-    "lib": ["esnext"],
+    "lib": [
+      "esnext"
+    ],
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "strictPropertyInitialization": false
   }
 }
