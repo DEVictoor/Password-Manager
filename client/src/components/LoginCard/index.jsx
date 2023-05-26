@@ -29,7 +29,7 @@ const LoginCard = ({ form, setForm, handleSubmit }) => {
       <p className="LoginCard__link">
         <a href="#">Forgot password?</a>
       </p>
-      <Button onClick={e => handleSubmit(e, form)}>Log in</Button>
+      <Button onClick={e => handleSubmit(e)}>Log in</Button>
       <Button secondary={true}>Sign up</Button>
     </div>
   );

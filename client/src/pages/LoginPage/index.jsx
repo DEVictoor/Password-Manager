@@ -8,7 +8,7 @@ const LoginPage = () => {
     password: ''
   });
 
-  const handleSubmit = (e, form) => {
+  const handleSubmit = e => {
     e.preventDefault();
     console.log(form);
   };
