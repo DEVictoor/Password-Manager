@@ -1,10 +1,21 @@
-import { Login } from '../../components/Login';
+import { useState } from 'react';
+import { LoginCard } from '../../components/LoginCard';
 import './LoginPage.css';
 
 const LoginPage = () => {
+  const [form, setForm] = useState({
+    email: '',
+    password: ''
+  });
+
+  const handleSubmit = (e, form) => {
+    e.preventDefault();
+    console.log(form);
+  };
+
   return (
     <div className="LoginPage">
-      <Login />
+      <LoginCard form={form} setForm={setForm} handleSubmit={handleSubmit} />
     </div>
   );
 };
