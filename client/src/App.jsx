@@ -14,6 +14,7 @@ import { AccountPasswordPage } from './pages/AccountPasswordPage';
 import { ApplicationPage } from './pages/ApplicationPage';
 import { AppRouter } from './routers/AppRouter';
 import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from './utils/auth';
 
 const App = () => {
   return (
@@ -32,7 +33,9 @@ const App = () => {
       {/* <AccountPasswordPage /> */}
       {/* <ApplicationPage /> */}
       <BrowserRouter>
-        <AppRouter />
+        <AuthProvider>
+          <AppRouter />
+        </AuthProvider>
       </BrowserRouter>
     </div>
   );
