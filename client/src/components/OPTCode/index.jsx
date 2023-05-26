@@ -1,27 +1,32 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import './OPTCode.css';
-
-const OPTCode = () => {
-  const [inputValues, setInputValues] = useState(['', '', '', '', '']);
+import PropTypes from 'prop-types';
+const OPTCode = ({ handleSubmit, form, setForm }) => {
   const inputRefs = useRef([]);
-  const buttonRef = useRef();
 
   useEffect(() => {
     inputRefs.current[0].focus();
   }, []);
 
   const insertChar = (value, index) => {
-    const newInputValues = [...inputValues];
-    newInputValues[index] = value;
-    setInputValues(newInputValues);
+    const newValue = { ...form };
+    newValue.otp[index] = value;
+    setForm(newValue);
+    const values = [false, false, false, false, false];
+    if (value !== '') values[index] = true;
+    form.otp.map((e, i) => {
+      values[i] = e !== '' ? true : values[i];
+    });
+
+    if (values.every(e => e === true)) {
+      handleSubmit();
+    }
   };
 
   const setFocus = index => {
-    if (index === inputValues.length - 1) {
-      buttonRef.current.focus();
-    } else {
-      inputRefs.current[index + 1].focus();
-    }
+    console.log(index);
+    if (index === form.otp.length - 1) return;
+    inputRefs.current[index + 1].focus();
   };
 
   const handleKeyPress = (e, index) => {
@@ -41,31 +46,31 @@ const OPTCode = () => {
   };
 
   const handlePaste = (e, index) => {
-    const newInputValues = [...inputValues];
+    const newValue = { ...form };
     let textPaste = e.clipboardData
       .getData('text/plain')
       .replace(/[^a-zA-Z0-9]/g, '')
       .toUpperCase();
-    const minNumber = Math.min(inputValues.length - index, textPaste.length);
+    const minNumber = Math.min(form.otp.length - index, textPaste.length);
 
     for (let i = 0; i < minNumber; i++) {
       if (/^[a-zA-Z0-9\b]$/.test(textPaste[i])) {
-        newInputValues[index] = textPaste[i];
-        setInputValues(newInputValues);
+        newValue.otp[index] = textPaste[i];
+        setForm(newValue);
         index++;
+        setFocus(index - 1);
       }
     }
-    setFocus(index - 1);
   };
 
   return (
     <div className="OPTCode">
-      <h1 className="OPTCode__title">Password Manager</h1>
       <div className="OPTCode__input">
         <label htmlFor="OPTCode">Insert your code</label>
         <div className="OPTCode__input--inputs">
-          {inputValues.map((value, index) => (
+          {form.otp.map((value, index) => (
             <input
+              className={`input ${index && 'hola'}`}
               maxLength={1}
               key={index}
               value={value}
@@ -79,11 +84,14 @@ const OPTCode = () => {
           ))}
         </div>
       </div>
-      <button ref={buttonRef} className="OPTCode__button">
-        Confirm
-      </button>
     </div>
   );
+};
+
+OPTCode.propTypes = {
+  form: PropTypes.object,
+  setForm: PropTypes.func,
+  handleSubmit: PropTypes.func
 };
 
 export { OPTCode };
