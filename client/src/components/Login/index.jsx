@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import './Login.css';
+import { useAuth } from '../../utils/auth';
 
 const Login = () => {
+  const auth = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -13,6 +15,12 @@ const Login = () => {
   };
 
   const handleSubmit = () => {
+    const save = {
+      email: email,
+      password: password
+    };
+    console.log(auth);
+    auth.login(save);
     console.log('Email: ', email, ' Pass: ', password);
   };
 
